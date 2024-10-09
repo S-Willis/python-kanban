@@ -1,6 +1,6 @@
 name: "Python-Kanban"
 description: "Kanban Board Add-On?"
-version: "0.0.4"
+version: "0.0.5"
 slug: "Kanban"
 init: false
 arch:
