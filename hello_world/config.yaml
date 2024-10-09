@@ -1,7 +1,7 @@
-name: "Python-Kanban"
+name: "Hello world"
 description: "Kanban Board Add-On?"
-version: "0.0.5"
-slug: "Kanban"
+version: "0.0.6"
+slug: "hello_world"
 init: false
 arch:
   - aarch64
