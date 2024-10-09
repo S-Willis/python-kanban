@@ -4,7 +4,8 @@
 ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
-RUN apt update -y && \
+RUN \
+    apt update -y && \
     apt install python3 python3-waitress python3-flask python3-flask-sqlalchemy \
       --no-install-recommends -y && \
     apt clean
