@@ -1,3 +1,3 @@
 #!/usr/bin/with-contenv bashio
 
-echo "RUN.SH!!"
+echo "Hello world!"
