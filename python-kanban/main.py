@@ -13,7 +13,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///kanban.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['kanban.columns'] = ['To Do', 'Doing', 'Done']
+    app.config['kanban.columns'] = ['Pile','Blookeb','To Do', 'Doing', 'Done']
     db.init_app(app)
     app.app_context().push()
     db.create_all()
