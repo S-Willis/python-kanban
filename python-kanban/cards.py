@@ -6,8 +6,9 @@ from database import db
 class Card(db.Model): # pylint: disable=too-few-public-methods
     """SQLAlchemy card class"""
     id = db.Column(db.Integer, primary_key=True) # pylint: disable=C0103
+    title = db.Column(db.String(120),default="Task")
     text = db.Column(db.String(120))
-    column = db.Column(db.String(120), default="To Do")
+    column = db.Column(db.String(120), default="Pile")
     color = db.Column(db.String(7), default='#dddddd')
     modified = db.Column(db.DateTime, default=datetime.utcnow)
     archived = db.Column(db.Boolean, default=False)
@@ -21,6 +22,7 @@ class Card(db.Model): # pylint: disable=too-few-public-methods
         """Return a JSON representation of a card"""
         return {
             'id': self.id,
+            'title': self.title,
             'text': self.text,
             'column': self.column,
             'color': self.color,
@@ -77,6 +79,10 @@ def update_card(card_id, json, columns):
     card = Card.query.get(card_id)
 
     modified = False
+
+    if 'title' in json:
+        modified = True
+        card.title = json['title']
 
     if 'text' in json:
         modified = True
