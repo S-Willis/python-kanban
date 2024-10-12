@@ -5,7 +5,13 @@ ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
 RUN \
-    apk add python3 python3-waitress python3-flask python3-flask-sqlalchemy
+    apk add --no-cache \
+        python3 \
+        py3-waitress \
+        py3-flask \
+        py3-flask-sqlalchemy\
+        \
+        && python -m ensurepip
 WORKDIR /python-kanban
 
 COPY *.py .
@@ -15,6 +21,5 @@ EXPOSE 8080
 COPY run.sh /
 RUN chmod a+x /run.sh
 
-# CMD [ "/run.sh" ]
 
-CMD waitress-serve --call 'main:create_app'
+CMD ["/run.sh"]

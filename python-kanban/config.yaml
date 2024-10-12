@@ -1,6 +1,6 @@
 name: python-kanban
 description: Kanban Board Add-On
-version: "0.0.13"
+version: "0.0.14"
 slug: python-kanban
 init: false
 arch:
@@ -9,3 +9,5 @@ arch:
   - armhf
   - armv7
   - i386
+ports:
+  8080/tcp: 8080
