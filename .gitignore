@@ -105,3 +105,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+python-kanban/Dockerfile
+python-kanban/config.yaml
+python-kanban/run.sh
