@@ -54,10 +54,10 @@ def clear_block(block_id):
 
     db.session.commit()
 
-def get_blockers_for_card(blockee_id):
-    #TODO: Return list of Blocks (Cards?) where blockee_id matches
-    return
+def get_blocks_for_card(blockee_id):
+    
+    return [block.json for block in Block.query.filter(blockee_id=blockee_id).all]
 
-def get_cards_blocked_by(blocker_id):
+def get_blocks_caused_by_card(blocker_id):
     #TODO: Return list of Blocks (Cards?) where blocker_id matches
-    return
+    return [block.json for block in Block.query.filter(blocker_id=blocker_id).all]

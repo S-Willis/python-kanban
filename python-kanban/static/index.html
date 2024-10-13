@@ -99,6 +99,13 @@
     li.kanban-card p.card-project {
       display: block;
     }
+
+    li.kanban-card p.card-blockers {
+      display: block;
+      text-align: right;
+      bottom: 5px;
+    }
+
     li.kanban-card p.card-last-updated {
       text-align: center;
       margin: 0.5em;
@@ -258,10 +265,9 @@
             <label class="color-label">Background color: <input title="Select colour" ref="card_edit_color" type="color" v-bind:value="edit_card.color"/></label>
             <label class="archived-label">Archived?: <input title="Archive card" ref="card_edit_archive" type="checkbox" v-bind:checked="edit_card.archived"/></label>
             <br />
-            <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_text">{{edit_card.text}}</textarea>
-            <!-- Put title editing here? -->
-            <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_title">{{edit_card.title}}</textarea>
-            <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_project">{{edit_card.project}}</textarea>
+            <label>Text: <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_text">{{edit_card.text}}</textarea></label>
+            <label>Title: <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_title">{{edit_card.title}}</textarea></label>
+            <label>Project<textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_project">{{edit_card.project}}</textarea></label>
             <input class="save-card" type="submit" value="save" />
           </form>
           <button class="delete-card" v-on:click.once="delete_card(edit_card.id, $event)">delete card</button>

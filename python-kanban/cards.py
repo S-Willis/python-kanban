@@ -48,8 +48,7 @@ def create_card(title, **kwargs):
     # TODO: handle missing values
 
     db.session.add(Card(title=title, **kwargs))
-    db.session.commit()
-    
+    db.session.commit()   
 
 def delete_card(card_id):
     """Delete a card"""
@@ -122,5 +121,4 @@ def update_card(card_id, json, columns):
         card.modified = datetime.now()
 
     db.session.commit()
-
 
