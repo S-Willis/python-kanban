@@ -255,6 +255,7 @@
             <p class="card-title">{{ card.title }}</p>
             <p class="card-text">{{ card.text }}</p>
             <p class="card-project">{{ card.project }}</p>
+            <p class="card-blockers">{{ card.blockers }}</p>
             <p class="card-last-updated"><small v-show="show_card_timestamps"> Update {{ Math.floor((Date.now() - Date.parse(card.modified)) / (1000*60*60*24)) }} day(s) ago</small></p>
           </li>
         </transition-group>
@@ -269,6 +270,10 @@
             <label>Title: <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_title">{{edit_card.title}}</textarea></label>
             <label>Project<textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_project">{{edit_card.project}}</textarea></label>
             <input class="save-card" type="submit" value="save" />
+          </form>
+          <form v-on:submit.prevent="complete_block_add(edit_card.id, $event)" action="#" method="POST">
+            <label>Blocker<input v-on:keyup.ctrl.Enter="complete_block_add(edit_card.id, $event)" ref="add_block_title">Blocker Title</input></label>
+            <input class="save-card" type="submit" value="add blocker" />
           </form>
           <button class="delete-card" v-on:click.once="delete_card(edit_card.id, $event)">delete card</button>
         </div>

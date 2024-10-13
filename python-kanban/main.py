@@ -7,6 +7,7 @@ from flask.json import jsonify
 
 from database import db
 import cards
+import block
 
 def create_app():
     """Create a new instance of the flask app"""
@@ -46,12 +47,26 @@ def create_app():
         cards.create_card(
             title=request.form.get('title'),
             text=request.form.get('text'),
+            project=request.form.get('project'),
             column=request.form.get('column', app.config.get('kanban.columns')[0]),
             color=request.form.get('color', None),
         )
 
         # TODO: handle errors
         return 'Success'
+    
+    @app.route('/block/<int:card_id>', methods=['POST'])
+    def create_block(card_id):
+        """Create a new block"""
+
+        block.create_block(
+            title=request.form.get('title'),
+            blockee_id=card_id
+        )
+        return 'Success?'
+
+
+
 
     @app.route('/card/reorder', methods=["POST"])
     def order_cards():

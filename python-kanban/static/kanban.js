@@ -20,6 +20,7 @@ window.app = new Vue({
   },
   el: "#kanban",
   methods: {
+    
     cancel_card_edit: function () {
       this.edit_card = null;
     },
@@ -34,6 +35,21 @@ window.app = new Vue({
         this.edit_card = null;
       }
     },
+    complete_block_add: function (card_id) {
+      if(this.edit_card) {
+        this.create_block(card_id, this.$refs.add_block_title.value)
+      }
+    },
+
+    create_block: function (card_id, block_title){
+      let card = this.get_card(card_id);
+      fetch("block/" + card.id, {
+        method: 'POST',
+        headers:  {'Content-Type': 'application/json'},
+        body: {'title': block_title}
+      })
+    },
+
     create_card: function (ev) {
       let vue_app = this;
       let form = ev.target;

@@ -10,7 +10,7 @@ the block title is the title of block B"""
 
 from database import db
 
-class Block(db.model):
+class Block(db.Model):
     """SQLAlchemy Block Class"""
     block_id = db.Column(db.Integer, primary_key=True)
     blockee_id = db.Column(db.Integer)
@@ -59,5 +59,4 @@ def get_blocks_for_card(blockee_id):
     return [block.json for block in Block.query.filter(blockee_id=blockee_id).all]
 
 def get_blocks_caused_by_card(blocker_id):
-    #TODO: Return list of Blocks (Cards?) where blocker_id matches
     return [block.json for block in Block.query.filter(blocker_id=blocker_id).all]

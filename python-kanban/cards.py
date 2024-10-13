@@ -117,8 +117,17 @@ def update_card(card_id, json, columns):
         modified = True
         card.archived = json['archived']
 
+    if 'blockers' in json:
+        modified = True
+        deal_with_blockers(json['blockers'])
+
     if modified:
         card.modified = datetime.now()
 
     db.session.commit()
+
+def deal_with_blockers(blockers):
+    print("AAAAAH\n")
+    print(blockers)
+    return
 
