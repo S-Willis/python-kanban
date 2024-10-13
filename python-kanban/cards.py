@@ -47,7 +47,7 @@ def create_card(title, **kwargs):
     """Create a new card"""
     # TODO: handle missing values
 
-    db.session.add(card)
+    db.session.add(Card(title=title, **kwargs))
     db.session.commit()
     
 
