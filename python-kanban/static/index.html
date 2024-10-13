@@ -268,12 +268,13 @@
             <br />
             <label>Text: <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_text">{{edit_card.text}}</textarea></label>
             <label>Title: <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_title">{{edit_card.title}}</textarea></label>
-            <label>Project<textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_project">{{edit_card.project}}</textarea></label>
+            <label>Project: <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_project">{{edit_card.project}}</textarea></label>
             <input class="save-card" type="submit" value="save" />
           </form>
-          <form v-on:submit.prevent="complete_block_add(edit_card.id, $event)" action="#" method="POST">
-            <label>Blocker<input v-on:keyup.ctrl.Enter="complete_block_add(edit_card.id, $event)" ref="add_block_title">Blocker Title</input></label>
-            <input class="save-card" type="submit" value="add blocker" />
+          <br />
+          <form v-on:submit.prevent="create_block(edit_card.id, $event)" action="block/" method="PUT">
+            <label>Blocker<textarea v-on:keyup.ctrl.Enter="create_block(edit_card.id, $event)" ref="add_block_title">Enter Title</textarea></label>
+            <input title="create block" class="create-block" type="submit" value="Add block" />
           </form>
           <button class="delete-card" v-on:click.once="delete_card(edit_card.id, $event)">delete card</button>
         </div>

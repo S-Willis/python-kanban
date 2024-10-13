@@ -35,11 +35,22 @@ def all_blocks():
     """Return JSON for all blocks"""
     return [block.json() for block in Block.query.all()]
 
+# def create_block(title, **kwargs):
+#     """Create a new Block"""
+#     #TODO: Auto-pull block title from blocker card?
+    
+#     db.session.add(Block(title=title, **kwargs))
+#     db.session.commit()
+
 def create_block(title, **kwargs):
     """Create a new Block"""
     #TODO: Auto-pull block title from blocker card?
-    db.session.add(Block(title=title, **kwargs))
+    block = Block(title=title, **kwargs)
+    db.session.add(block)
     db.session.commit()
+    db.session.refresh(block)
+
+    print(all_blocks())
 
 def delete_block(block_id):
     """Delete a block"""

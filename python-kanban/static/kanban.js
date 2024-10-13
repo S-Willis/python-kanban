@@ -35,18 +35,16 @@ window.app = new Vue({
         this.edit_card = null;
       }
     },
-    complete_block_add: function (card_id) {
-      if(this.edit_card) {
-        this.create_block(card_id, this.$refs.add_block_title.value)
-      }
-    },
 
-    create_block: function (card_id, block_title){
-      let card = this.get_card(card_id);
-      fetch("block/" + card.id, {
-        method: 'POST',
-        headers:  {'Content-Type': 'application/json'},
-        body: {'title': block_title}
+    create_block: function (card_id,ev){
+      let vue_app = this;
+      let form = ev.target;
+      let card = vue_app.get_card(card_id);
+      title = this.$refs.add_block_title.value;
+      fetch(form.action + card.id, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({'title': title})
       })
     },
 

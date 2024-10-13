@@ -55,12 +55,15 @@ def create_app():
         # TODO: handle errors
         return 'Success'
     
-    @app.route('/block/<int:card_id>', methods=['POST'])
+    @app.route('/block/<int:card_id>', methods=['PUT'])
     def create_block(card_id):
         """Create a new block"""
 
+        title=request.get_json()['title']
+        print(title)
+
         block.create_block(
-            title=request.form.get('title'),
+            title=title,
             blockee_id=card_id
         )
         return 'Success?'
