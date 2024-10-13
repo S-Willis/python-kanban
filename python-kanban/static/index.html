@@ -88,13 +88,16 @@
       top: 5px;
       left: 5px;
       text-align: left;
-      display: block;
+      /* display: block; */
     }
     li.kanban-card p.card-text {
       /* margin: 2.2em 1em 1em 1em; */
       max-height: 100px;
       word-wrap: break-word;
       /* text-overflow: ellipsis; */
+    }
+    li.kanban-card p.card-project {
+
     }
     li.kanban-card p.card-last-updated {
       text-align: center;
@@ -244,6 +247,7 @@
             <span class="card_id" v-show="show_card_ids"><small>#{{ card.id }}</small></span>
             <p class="card-title">{{ card.title }}</p>
             <p class="card-text">{{ card.text }}</p>
+            <p class="card-project">{{ card.project }}</p>
             <p class="card-last-updated"><small v-show="show_card_timestamps"> Update {{ Math.floor((Date.now() - Date.parse(card.modified)) / (1000*60*60*24)) }} day(s) ago</small></p>
           </li>
         </transition-group>
@@ -256,6 +260,8 @@
             <br />
             <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_text">{{edit_card.text}}</textarea>
             <!-- Put title editing here? -->
+            <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_title">{{edit_card.title}}</textarea>
+            <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_project">{{edit_card.project}}</textarea>
             <input class="save-card" type="submit" value="save" />
           </form>
           <button class="delete-card" v-on:click.once="delete_card(edit_card.id, $event)">delete card</button>

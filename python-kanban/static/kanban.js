@@ -25,7 +25,8 @@ window.app = new Vue({
     },
     complete_card_edit: function (card_id) {
       if (this.edit_card) {
-        // this.edit_card.title = this.$refs.card_edit_title.value; Needs to be added in index.html?
+        this.edit_card.title = this.$refs.card_edit_title.value;
+        this.edit_card.project = this.$refs.card_edit_project.value;
         //Same for project? Same for Blockers?
         this.edit_card.text = this.$refs.card_edit_text.value;
         this.edit_card.color = this.$refs.card_edit_color.value;

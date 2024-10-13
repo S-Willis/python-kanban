@@ -86,6 +86,10 @@ def update_card(card_id, json, columns):
         modified = True
         card.title = json['title']
 
+    if 'project' in json:
+        modified = True
+        card.title = json['project']
+
     if 'text' in json:
         modified = True
         card.text = json['text']
