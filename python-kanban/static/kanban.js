@@ -46,6 +46,7 @@ window.app = new Vue({
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({'title': title})
       })
+      this.refresh_cards;
     },
 
     create_card: function (ev) {

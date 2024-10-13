@@ -62,11 +62,26 @@ def create_app():
         title=request.get_json()['title']
         print(title)
 
+        blocker_id = cards.search_by_title(title)
+        print(blocker_id)
+
+        if not blocker_id:
+            column = app.config.get('kanban.columns')[0]
+            print(column)
+            cards.create_card(
+                title=title,
+                column = column
+            )
+            
+            blocker_id = cards.search_by_title(title)
+            print(blocker_id)
+
         block.create_block(
             title=title,
-            blockee_id=card_id
+            blockee_id=card_id,
+            blocker_id=blocker_id
         )
-        return 'Success?'
+        return 'Success'
 
 
 

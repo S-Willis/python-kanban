@@ -46,9 +46,11 @@ def get_cards_in_project(query_project):
 def create_card(title, **kwargs):
     """Create a new card"""
     # TODO: handle missing values
-
-    db.session.add(Card(title=title, **kwargs))
+    card = Card(title=title, **kwargs)
+    db.session.add(card)
     db.session.commit()   
+    db.session.refresh(card)
+    
 
 def delete_card(card_id):
     """Delete a card"""
@@ -130,4 +132,11 @@ def deal_with_blockers(blockers):
     print("AAAAAH\n")
     print(blockers)
     return
+
+def search_by_title(title):
+    card = Card.query.filter_by(title=title).first()
+    if card:
+        return card.id
+    else:
+        return
 

@@ -45,6 +45,7 @@ def all_blocks():
 def create_block(title, **kwargs):
     """Create a new Block"""
     #TODO: Auto-pull block title from blocker card?
+    
     block = Block(title=title, **kwargs)
     db.session.add(block)
     db.session.commit()

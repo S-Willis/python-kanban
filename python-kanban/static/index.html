@@ -273,7 +273,7 @@
           </form>
           <br />
           <form v-on:submit.prevent="create_block(edit_card.id, $event)" action="block/" method="PUT">
-            <label>Blocker<textarea v-on:keyup.ctrl.Enter="create_block(edit_card.id, $event)" ref="add_block_title">Enter Title</textarea></label>
+            <label>Blocker Title<input v-on:keyup.ctrl.Enter="create_block(edit_card.id, $event)" ref="add_block_title" placeholder="Block Title"></input></label>
             <input title="create block" class="create-block" type="submit" value="Add block" />
           </form>
           <button class="delete-card" v-on:click.once="delete_card(edit_card.id, $event)">delete card</button>
