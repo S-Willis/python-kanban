@@ -25,7 +25,8 @@ window.app = new Vue({
     },
     complete_card_edit: function (card_id) {
       if (this.edit_card) {
-        // this.edit_card.title = this.$refs.card_edit_title.value;
+        // this.edit_card.title = this.$refs.card_edit_title.value; Needs to be added in index.html?
+        //Same for project? Same for Blockers?
         this.edit_card.text = this.$refs.card_edit_text.value;
         this.edit_card.color = this.$refs.card_edit_color.value;
         this.edit_card.archived = this.$refs.card_edit_archive.checked;
@@ -133,13 +134,13 @@ window.app = new Vue({
     }
   }
 });
-
+// Handles Card/Column movement
 function dragstart_handler (ev) {
   // Add the target element's id to the data transfer object
   ev.dataTransfer.setData("text/plain", ev.target.id);
   ev.dropEffect = "move";
 }
-
+// Handles Card/Column movement
 function dragover_handler (ev) {
   ev.preventDefault();
   // Set the dropEffect to move
@@ -155,7 +156,7 @@ function dragover_handler (ev) {
     container.classList.add("drop-target");
   }
 }
-
+// Handles Card/Column movement
 function dragleave_handler (ev) {
   let container = ev.target;
 
@@ -164,7 +165,7 @@ function dragleave_handler (ev) {
   }
   container.classList.remove("drop-target");
 }
-
+// Handles Card/Column movement
 function drop_handler (ev) {
   ev.preventDefault();
 
@@ -226,6 +227,7 @@ function drop_handler (ev) {
   }
 }
 
+// Initiates app when content loaded
 document.addEventListener("DOMContentLoaded", function () {
   window.app.init();
 });

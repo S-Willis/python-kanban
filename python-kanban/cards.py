@@ -7,6 +7,7 @@ class Card(db.Model): # pylint: disable=too-few-public-methods
     """SQLAlchemy card class"""
     id = db.Column(db.Integer, primary_key=True) # pylint: disable=C0103
     title = db.Column(db.String(120), default="Task")
+    project = db.Column(db.String(120),default="None")
     text = db.Column(db.String(120),default="Description")
     column = db.Column(db.String(120), default="Pile")
     color = db.Column(db.String(7), default='#dddddd')
@@ -23,6 +24,7 @@ class Card(db.Model): # pylint: disable=too-few-public-methods
         return {
             'id': self.id,
             'title': self.title,
+            'project': self.project,
             'text': self.text,
             'column': self.column,
             'color': self.color,
@@ -107,3 +109,7 @@ def update_card(card_id, json, columns):
         card.modified = datetime.utcnow()
 
     db.session.commit()
+
+def get_cards_in_project(project):
+    # TODO: Implement get cards by project, sqlalchemy?
+    return False
