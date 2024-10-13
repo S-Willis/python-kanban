@@ -36,11 +36,22 @@ def all_cards():
     """Return JSON for all cards, sorted by the order_by attribute"""
     return [card.json() for card in Card.query.order_by(Card.sort_order.asc()).all()]
 
+def get_cards_in_project(query_project):
+    """Return JSON for all cards in a given project"""
+
+    project_cards = [card.json() for card in Card.query.filter_by(project=query_project).all()] 
+
+    return project_cards
+
 def create_card(title, **kwargs):
     """Create a new card"""
     # TODO: handle missing values
-    db.session.add(Card(title=title, **kwargs))
+
+    db.session.add(card)
     db.session.commit()
+
+
+    
 
 def delete_card(card_id):
     """Delete a card"""
@@ -88,7 +99,7 @@ def update_card(card_id, json, columns):
 
     if 'project' in json:
         modified = True
-        card.title = json['project']
+        card.project = json['project']
 
     if 'text' in json:
         modified = True
@@ -110,10 +121,8 @@ def update_card(card_id, json, columns):
         card.archived = json['archived']
 
     if modified:
-        card.modified = datetime.utcnow()
+        card.modified = datetime.now()
 
     db.session.commit()
 
-def get_cards_in_project(project):
-    # TODO: Implement get cards by project, sqlalchemy?
-    return False
+
