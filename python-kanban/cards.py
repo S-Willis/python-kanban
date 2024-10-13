@@ -10,7 +10,7 @@ class Card(db.Model): # pylint: disable=too-few-public-methods
     text = db.Column(db.String(120),default="Description")
     column = db.Column(db.String(120), default="Pile")
     color = db.Column(db.String(7), default='#dddddd')
-    modified = db.Column(db.DateTime, default=datetime.utcnow)
+    modified = db.Column(db.DateTime, default=datetime.now)
     archived = db.Column(db.Boolean, default=False)
     sort_order = db.Column(db.Integer, default=0)
 
