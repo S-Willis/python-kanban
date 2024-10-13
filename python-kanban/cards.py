@@ -6,8 +6,8 @@ from database import db
 class Card(db.Model): # pylint: disable=too-few-public-methods
     """SQLAlchemy card class"""
     id = db.Column(db.Integer, primary_key=True) # pylint: disable=C0103
-    title = db.Column(db.String(120),default="Task")
-    text = db.Column(db.String(120))
+    title = db.Column(db.String(120), default="Task")
+    text = db.Column(db.String(120),default="Description")
     column = db.Column(db.String(120), default="Pile")
     color = db.Column(db.String(7), default='#dddddd')
     modified = db.Column(db.DateTime, default=datetime.utcnow)
@@ -34,10 +34,10 @@ def all_cards():
     """Return JSON for all cards, sorted by the order_by attribute"""
     return [card.json() for card in Card.query.order_by(Card.sort_order.asc()).all()]
 
-def create_card(text, **kwargs):
+def create_card(title, **kwargs):
     """Create a new card"""
     # TODO: handle missing values
-    db.session.add(Card(text=text, **kwargs))
+    db.session.add(Card(title=title, **kwargs))
     db.session.commit()
 
 def delete_card(card_id):

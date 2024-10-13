@@ -154,7 +154,7 @@
     #kanban-card-edit .color-label, #kanban-card-edit .archived-label {
       padding: 0.6em 0;
       display: inline-block;
-      verticle-align: bottom;
+      vertical-align: bottom;
       line-height: 2em;
     }
     #kanban-card-edit textarea {
@@ -217,7 +217,7 @@
       <h1>Kanban board</h1>
       <form v-on:submit.prevent="create_card" action="card" method="POST">
         <input title="create card" src="static/plus_icon.svg" type="image" value="Create card" />
-        <label>text: <input name="text" type="text" required="required" /></label>
+        <label>Title: <input name="title" type="text" required="required" /></label>
         <label>colour: <input ref="new_card_color" title="Select colour" name="color" type="color" /></label>
       </form>
     </header>
@@ -242,6 +242,7 @@
               <img src="static/edit_icon.svg" alt="edit" />
             </a>
             <span class="card_id" v-show="show_card_ids"><small>#{{ card.id }}</small></span>
+            <p class="card-title">{{ card.title }}</p>
             <p class="card-text">{{ card.text }}</p>
             <p class="card-last-updated"><small v-show="show_card_timestamps"> Update {{ Math.floor((Date.now() - Date.parse(card.modified)) / (1000*60*60*24)) }} day(s) ago</small></p>
           </li>
@@ -254,6 +255,7 @@
             <label class="archived-label">Archived?: <input title="Archive card" ref="card_edit_archive" type="checkbox" v-bind:checked="edit_card.archived"/></label>
             <br />
             <textarea v-on:keyup.ctrl.Enter="complete_card_edit(edit_card.id, $event)" ref="card_edit_text">{{edit_card.text}}</textarea>
+            <!-- Put title editing here? -->
             <input class="save-card" type="submit" value="save" />
           </form>
           <button class="delete-card" v-on:click.once="delete_card(edit_card.id, $event)">delete card</button>

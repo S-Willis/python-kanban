@@ -44,6 +44,7 @@ def create_app():
 
         # TODO: validation
         cards.create_card(
+            title=request.form.get('title'),
             text=request.form.get('text'),
             column=request.form.get('column', app.config.get('kanban.columns')[0]),
             color=request.form.get('color', None),
