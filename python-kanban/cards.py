@@ -49,8 +49,6 @@ def create_card(title, **kwargs):
 
     db.session.add(card)
     db.session.commit()
-
-
     
 
 def delete_card(card_id):
